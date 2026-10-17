@@ -51,6 +51,9 @@ Requirements
 
 Maintenance
 ~~~~~~~~~~~
+* Compute the day angle in :py:func:`pvlib.solarposition.equation_of_time_pvcdrom`
+  with the ``offset`` parameter of the day angle helper instead of subtracting
+  80 days afterwards. (:issue:`2902`)
 
 
 Contributors
@@ -61,6 +64,7 @@ Contributors
 * Cliff Hansen (:ghuser:`cwhanse`)
 * Chen Yi (:ghuser:`chenyi6758-source`)
 * Rajiv Daxini (:ghuser:`rdaxini`)
+* Muhtasim Munif Fahim (:ghuser:`Muhtasim-Munif-Fahim`)
 * jason-writer (:ghuser:`jason-writer`)
 
 

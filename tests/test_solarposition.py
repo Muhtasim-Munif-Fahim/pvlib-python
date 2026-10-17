@@ -624,6 +624,17 @@ def test_equation_of_time():
     assert np.allclose(eot_2 / eot_rng, eot / eot_rng, atol=0.4)  # pvcdrom
 
 
+def test_equation_of_time_pvcdrom():
+    # PVCDROM: B = 360/365 * (d - 81) degrees, EoT = 9.87 sin(2B)
+    # - 7.53 cos(B) - 1.5 sin(B); B = 0 at day 81
+    dayofyear = np.array([1, 81, 172, 266, 365])
+    b = np.deg2rad(360. / 365. * (dayofyear - 81))
+    expected = 9.87 * np.sin(2 * b) - 7.53 * np.cos(b) - 1.5 * np.sin(b)
+    eot = solarposition.equation_of_time_pvcdrom(dayofyear)
+    assert_allclose(eot, expected)
+    assert_allclose(solarposition.equation_of_time_pvcdrom(81), -7.53)
+
+
 def test_declination():
     times = pd.date_range(start="1/1/2015 0:00", end="12/31/2015 23:00",
                           freq="h")
